@@ -1,0 +1,138 @@
+@import "tailwindcss";
+@import "@fullcalendar/react/skeleton.css";
+@import "@fullcalendar/react/themes/monarch/theme.css";
+@import "@fullcalendar/react/themes/monarch/palettes/green.css";
+
+:root {
+  --background: #f2f5f1;
+  --foreground: #1d2a23;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+button,
+a,
+textarea {
+  outline-offset: 3px;
+}
+
+button:focus-visible,
+a:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #2f6b4f;
+}
+
+::selection {
+  background: #cbe2d3;
+  color: #193d2d;
+}
+
+.family-calendar {
+  --fc-border-color: #e2e8e3;
+  --fc-neutral-bg-color: #f5f7f4;
+  --fc-page-bg-color: #ffffff;
+  --fc-today-bg-color: #f1f7f2;
+  --fc-small-font-size: 0.72rem;
+}
+
+.family-calendar .fc {
+  color: #3b4940;
+  font-family: inherit;
+  font-size: 0.82rem;
+}
+
+.family-calendar .fc-toolbar {
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.family-calendar .fc-toolbar-title {
+  color: #24332a;
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+
+.family-calendar .fc-button {
+  min-height: 2rem;
+  border-radius: 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.family-calendar .fc-col-header-cell-cushion {
+  color: #778179;
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  padding-block: 0.65rem;
+  text-transform: uppercase;
+}
+
+.family-calendar .fc-daygrid-day-number {
+  color: #566159;
+  font-size: 0.75rem;
+  font-weight: 550;
+  padding: 0.45rem;
+}
+
+.family-calendar .fc-event {
+  border-radius: 0.35rem;
+  cursor: pointer;
+  font-size: 0.69rem;
+  padding: 0.12rem 0.28rem;
+}
+
+.family-calendar .fc-event:focus-visible {
+  outline: 2px solid #173f2d;
+  outline-offset: 2px;
+}
+
+.family-calendar .fc-daygrid-day-frame {
+  min-height: 5.7rem;
+}
+
+@media (max-width: 640px) {
+  .family-calendar .fc-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .family-calendar .fc-toolbar-chunk {
+    display: flex;
+    justify-content: center;
+  }
+
+  .family-calendar .fc-toolbar-title {
+    font-size: 0.95rem;
+  }
+
+  .family-calendar .fc-daygrid-day-frame {
+    min-height: 4.4rem;
+  }
+}
