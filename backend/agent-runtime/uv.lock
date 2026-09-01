@@ -125,6 +125,15 @@ wheels = [
 ]
 
 [[package]]
+name = "botocore-stubs"
+version = "1.43.67"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/3f/45/53d662227dc4787b2c854445ee7eb4751cb5d74cfb5c686a6ecbe1f94c17/botocore_stubs-1.43.67.tar.gz", hash = "sha256:853e74014a1f557055c4ffae5fb38d7c65c7c0520e1aab366cac41d5428f419d", size = 42846, upload-time = "2026-08-08T14:57:53.412Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/4e/5e/bdbf19967898a032292da65a47d6e25b2eee55865db4e687f861d80b5602/botocore_stubs-1.43.67-py3-none-any.whl", hash = "sha256:c51262bac3341c1cda71f05fa01141fffd3990d7a92c7960e3b755c1bc830373", size = 67244, upload-time = "2026-08-08T14:57:52.01Z" },
+]
+
+[[package]]
 name = "certifi"
 version = "2026.7.22"
 source = { registry = "https://pypi.org/simple" }
@@ -250,7 +259,7 @@ wheels = [
 [[package]]
 name = "family-planner-agent"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "bedrock-agentcore" },
     { name = "boto3" },
@@ -267,6 +276,7 @@ dev = [
     { name = "pytest-asyncio" },
     { name = "pytest-cov" },
     { name = "ruff" },
+    { name = "types-botocore" },
 ]
 
 [package.metadata]
@@ -286,6 +296,7 @@ dev = [
     { name = "pytest-asyncio", specifier = ">=1.4.0" },
     { name = "pytest-cov", specifier = ">=7.1.0" },
     { name = "ruff", specifier = ">=0.16.4" },
+    { name = "types-botocore", specifier = ">=1.0.2" },
 ]
 
 [[package]]
@@ -894,6 +905,18 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/5e/89/b4a0bcfdf4f71a3dea31379f095929613d7e4528a0996bca6aa964cd0dca/structlog-26.1.0.tar.gz", hash = "sha256:f63a716cbd1b1291cf7661de7794b455acfa4c43c5bcf1630e6ad5ddc1adb3b7", size = 1459881, upload-time = "2026-06-06T07:33:39.348Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a9/18/489c97b834dfff9cf2fc2507cede4bcd4b11e67f84bc462acd1992496f86/structlog-26.1.0-py3-none-any.whl", hash = "sha256:e081a26d6c373e6d201eca24eede26d8ffab07f88f477822e679183428d3d91e", size = 73764, upload-time = "2026-06-06T07:33:38.046Z" },
+]
+
+[[package]]
+name = "types-botocore"
+version = "1.0.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "botocore-stubs" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/18/e0/2fc05f11a376ee73b4fa71684e57c599a3b49698fe708ea8347664af2184/types-botocore-1.0.2.tar.gz", hash = "sha256:885d4ceb8d0594b73d08d5feb12b6bbd1ef9e7333531acb80477dc7904f02304", size = 5050, upload-time = "2022-04-01T13:50:22.228Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bd/98/f8ce0e9beb5b877969cbb2330f457a8ef066debc486082ee28ad7cb8f9bc/types_botocore-1.0.2-py3-none-any.whl", hash = "sha256:453fc52a1da8ac162793323d5f0f0dbaa40a3cd9dad915f5a3de79a07fd65674", size = 5152, upload-time = "2022-04-01T13:50:20.491Z" },
 ]
 
 [[package]]

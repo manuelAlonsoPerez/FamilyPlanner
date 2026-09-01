@@ -45,24 +45,57 @@ Do not continue if the returned ARN ends in `:root`.
 uv sync --frozen --dev
 ```
 
+## Run locally
+
+Validate package configuration without AWS credentials or a model invocation:
+
+```bash
+uv run family-planner-agent check
+```
+
+Invoke the agent with one scheduling message:
+
+```bash
+AWS_PROFILE=family-planner-dev \
+uv run family-planner-agent invoke \
+  "Plan a family dinner this Friday at 18:00 in Europe/Oslo."
+```
+
+The `invoke` command calls Amazon Bedrock and incurs model usage. The response is
+validated against the versioned Pydantic result contract before it is returned.
+
+Start the AgentCore-compatible local HTTP runtime:
+
+```bash
+AWS_PROFILE=family-planner-dev uv run family-planner-agentcore
+```
+
 ## Quality checks
 
 ```bash
 uv lock --check
 uv run ruff format --check .
 uv run ruff check .
-```
-
-Type-checking and tests become required when Part 2 adds the package and domain contracts:
-
-```bash
 uv run mypy src
-uv run pytest
+uv run pytest --cov --cov-report=term-missing
+uv build --clear
 ```
 
 ## Current status
 
-Project setup is in progress. The generated `main.py` remains a placeholder until the deterministic invocation and proposal contracts are introduced.
+The runtime now includes:
+
+- an installable `src/family_planner_agent` package;
+- typed invocation, calendar-event, and agent-result contracts;
+- `NoAction`, `Clarification`, `Proposal`, and `Refusal` results;
+- a bounded Strands agent configured for Amazon Nova Micro;
+- an AgentCore application entry point;
+- local CLI configuration and invocation commands;
+- contract and unit tests that do not call Bedrock.
+
+This is still an initial agent. It has no application tools, persistent sessions,
+calendar reads, proposal storage, approval transitions, or calendar write access.
+Those capabilities remain separate implementation phases.
 
 See:
 

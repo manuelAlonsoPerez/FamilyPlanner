@@ -1,0 +1,17 @@
+{
+  "targets": {
+    "default": {
+      "resources": {
+        "runtimes": {
+          "FamilyPlannerAgent": {
+            "runtimeId": "FamilyPlannerAgent_FamilyPlannerAgent-wNHG7v3XS9",
+            "runtimeArn": "arn:aws:bedrock-agentcore:us-east-1:175680165685:runtime/FamilyPlannerAgent_FamilyPlannerAgent-wNHG7v3XS9",
+            "roleArn": "arn:aws:iam::175680165685:role/AgentCore-FamilyPlannerAg-ApplicationAgentFamilyPla-HaLygiSQUTge"
+          }
+        },
+        "stackName": "AgentCore-FamilyPlannerAgent-default",
+        "deployHash": "5487ea0b56534ffe"
+      }
+    }
+  }
+}

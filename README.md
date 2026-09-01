@@ -13,8 +13,11 @@ Family Planner turns group chats into calendar actions. A Strands AI agent under
 
 The repository now includes a responsive Next.js frontend prototype with a group
 calendar, family chat, member view, and human-approval proposal card. It uses
-local fixture data only; authentication, persistence, agent execution, and
-calendar mutations are not connected yet.
+local fixture data only.
+
+The backend now includes an installable, typed Strands scheduling agent with
+AgentCore and local CLI entry points. Authentication, persistence, application
+tools, frontend integration, and calendar mutations are not connected yet.
 
 The planned stack uses:
 

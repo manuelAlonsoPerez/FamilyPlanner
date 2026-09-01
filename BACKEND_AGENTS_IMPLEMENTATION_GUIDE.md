@@ -1,9 +1,9 @@
 # Family Planner Backend and Agents Implementation Guide
 
-> Status: Part 1 in progress — local dependency scaffold created; AWS and package-layout gates remain
+> Status: Parts 1–3 in progress — local package, contracts, and basic Strands agent implemented; AWS verification and proposal state transitions remain
 > Scope: Backend and agent implementation only
 > Architecture source: [ARCHITECTURE.md](./ARCHITECTURE.md)
-> Last reviewed: 26 August 2026
+> Last reviewed: 1 September 2026
 
 This is an incremental implementation guide for the Family Planner backend and its Strands scheduling agent. It starts with a reproducible project setup and will later cover domain contracts, the local agent, tools, AgentCore deployment, asynchronous orchestration, approval policies, calendar execution, security, observability, and testing.
 
@@ -12,8 +12,8 @@ Some setup commands have already been executed in this repository. The checklist
 ## Guide roadmap
 
 - [ ] Part 1 — Project setup (dependency scaffold complete; AWS/package verification pending)
-- [ ] Part 2 — Domain contracts and proposal state machine
-- [ ] Part 3 — First local Strands agent
+- [ ] Part 2 — Domain contracts and proposal state machine (result contracts complete; lifecycle pending)
+- [x] Part 3 — First local Strands agent
 - [ ] Part 4 — Read-only agent tools and proposal creation
 - [ ] Part 5 — AgentCore Runtime deployment
 - [ ] Part 6 — Application API and asynchronous orchestration
@@ -947,8 +947,8 @@ Generated files from `uv` and the official AgentCore CLI are standard developmen
 - [x] `.env.example` contains no secrets.
 - [x] Ruff, mypy, coverage, and pytest configuration is written.
 - [x] Current Ruff and dependency/import checks pass.
-- [ ] The packaged `src/family_planner_agent` layout exists.
-- [ ] Mypy and coverage/test gates pass after Part 2 creates real code.
+- [x] The packaged `src/family_planner_agent` layout exists.
+- [x] Mypy and coverage/test gates pass with real contracts and agent code.
 - [ ] The agent-runtime scaffold is tracked in Git.
 - [x] Runtime ownership boundaries are documented.
 
@@ -996,29 +996,33 @@ Complete these in order:
 7. **Review existing changes**
    - confirm that only new hackathon work and acknowledged scaffolding are present;
    - do not mark the pre-existing-code checklist item complete without this review.
-8. **Prepare the package migration**
-   - leave the generated flat `main.py` unchanged during Part 1;
-   - make `src/family_planner_agent` the first code change in Part 2;
-   - enable mypy and coverage gates only after that migration.
+8. **Package migration — completed locally**
+   - the generated flat `main.py` has moved to `src/family_planner_agent`;
+   - invocation, event, and discriminated result contracts are implemented;
+   - the basic Strands agent and AgentCore entry point are implemented;
+   - Ruff, mypy, pytest with coverage, and `uv build` pass locally.
 
-The absence of `src/family_planner_agent` and project tests is intentional at this point. Part 2 creates them with the real domain contracts; empty placeholder modules and fake tests are not required for Part 1.
+The local package can be validated without AWS credentials by running
+`uv run family-planner-agent check`. A real invocation still requires the
+non-root AWS setup, Bedrock access, and budget controls listed above.
 
 In parallel with Part 2, keep the architecture Phase 0 risks visible: validate an AgentCore deployment and begin the Google OAuth consent-screen spike before calendar integration becomes the critical path.
 
 ## 25. Next implementation part
 
-Part 2 should define the deterministic contracts before any prompt or agent behavior:
+Complete the remaining deterministic proposal lifecycle before adding application
+tools:
 
-- invocation request and response;
-- message context;
-- normalized calendar event;
-- `NoAction`, `Clarification`, `Proposal`, and `Refusal` results;
-- create/update/delete proposal payloads;
-- proposal status and transition rules;
-- contract versioning;
-- Pydantic validation tests.
+- define proposal statuses and allowed transitions;
+- define immutable approval-policy snapshots and proposal versions;
+- add stale-version and invalid-transition errors;
+- add serialization fixtures for each result and calendar operation;
+- run one bounded Nova Micro smoke invocation after the AWS identity, permissions,
+  and budget gates are complete;
+- then begin Part 4 with read-only group/calendar context and proposal-persistence
+  tools.
 
-Defining these first prevents model output from becoming the application's implicit API.
+The agent must continue to have no calendar mutation tools.
 
 ## 26. Project setup references
 

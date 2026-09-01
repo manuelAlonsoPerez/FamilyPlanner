@@ -13,6 +13,14 @@ dependencies = [
     "structlog>=26.1.0",
 ]
 
+[project.scripts]
+family-planner-agent = "family_planner_agent.cli:main"
+family-planner-agentcore = "family_planner_agent.main:main"
+
+[build-system]
+requires = ["uv_build>=0.12.8,<0.13.0"]
+build-backend = "uv_build"
+
 [dependency-groups]
 dev = [
     "mypy>=2.3.1",
@@ -20,6 +28,7 @@ dev = [
     "pytest-asyncio>=1.4.0",
     "pytest-cov>=7.1.0",
     "ruff>=0.16.4",
+    "types-botocore>=1.0.2",
 ]
 
 [tool.ruff]
